@@ -3,15 +3,22 @@
 import { motion } from 'framer-motion'
 import { useIsDesktop } from '../(lib)/useIsDesktop'
 import JoinButton from './JoinButton'
+import { useState, useRef } from 'react'
 
 export default function Hero() {
   const isDesktop = useIsDesktop()
+  const [videoError, setVideoError] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const scrollToAbout = () => {
     const element = document.querySelector('#about')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const handleVideoError = () => {
+    setVideoError(true)
   }
 
   const MotionDiv = isDesktop ? motion.div : 'div'
@@ -21,17 +28,26 @@ export default function Hero() {
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 gradient-bg opacity-50"></div>
       
+      {/* Fallback Image Background - shown when video fails to load */}
+      {videoError && (
+        <div 
+          className="absolute inset-0 w-full h-full object-cover opacity-70 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/og-image.png)' }}
+        ></div>
+      )}
+      
       {/* Hero Video Background */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover opacity-70"
         autoPlay
         loop
         muted
         playsInline
-        poster="/og-image.png"
+        onError={handleVideoError}
       >
         <source src="/hero-video.mp4" type="video/mp4" />
-        {/* Fallback to gradient if video can't play */}
+        {/* Fallback to og-image if video can't play */}
       </video>
 
       {/* Content */}

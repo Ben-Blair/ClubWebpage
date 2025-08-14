@@ -29,7 +29,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <h1 className="text-xl font-bold font-space-grotesk">
-              Jesus Club
+              JesusClub.org
             </h1>
           </div>
 
