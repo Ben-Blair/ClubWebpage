@@ -89,7 +89,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
         
         {/* Theme and Viewport */}
-        <meta name="theme-color" content="#6C5CE7" />
+        <meta name="theme-color" content="#3B82F6" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* Web App Manifest */}

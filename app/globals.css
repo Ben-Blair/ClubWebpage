@@ -35,7 +35,7 @@
   }
 
   .gradient-bg {
-    background: linear-gradient(-45deg, #6C5CE7, #8B7CF6, #A29BFE, #6C5CE7);
+    background: linear-gradient(-45deg, #3B82F6, #60A5FA, #93C5FD, #3B82F6);
     background-size: 400% 400%;
     animation: gradient 8s ease infinite;
   }
@@ -43,7 +43,7 @@
   @media (prefers-reduced-motion: reduce) {
     .gradient-bg {
       animation: none;
-      background: linear-gradient(-45deg, #6C5CE7, #8B7CF6);
+      background: linear-gradient(-45deg, #3B82F6, #60A5FA);
     }
   }
 }

@@ -19,11 +19,11 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 gradient-bg opacity-90"></div>
+      <div className="absolute inset-0 gradient-bg opacity-50"></div>
       
       {/* Hero Video Background */}
       <video
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-70"
         autoPlay
         loop
         muted

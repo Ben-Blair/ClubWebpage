@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        accent: '#6C5CE7', // Modern violet accent
-        'accent-light': '#8B7CF6',
-        'accent-dark': '#5A4FCF',
+        accent: '#3B82F6', // Modern blue accent
+        'accent-light': '#60A5FA',
+        'accent-dark': '#2563EB',
       },
       fontFamily: {
         'space-grotesk': ['Space Grotesk', 'sans-serif'],
