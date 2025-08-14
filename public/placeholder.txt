@@ -1,0 +1,7 @@
+This directory contains placeholder assets for the Jesus Club website.
+
+Replace these with actual assets:
+- favicon.ico - Website favicon
+- og-image.png - Open Graph social media image (1200x630px)
+- hero-video.mp4 - Hero background video (optional)
+- apple-touch-icon.png - iOS app icon (180x180px)

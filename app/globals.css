@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: #fff;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: #fff;
+    overscroll-behavior: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3 px-6 rounded-lg border border-gray-300 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] border border-gray-100;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(-45deg, #6C5CE7, #8B7CF6, #A29BFE, #6C5CE7);
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-bg {
+      animation: none;
+      background: linear-gradient(-45deg, #6C5CE7, #8B7CF6);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
