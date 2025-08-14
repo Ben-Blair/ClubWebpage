@@ -13,7 +13,7 @@ const events = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.618 8.974l-1.902-1.902a3.75 3.75 0 00-5.304 0L12 9.75l-1.412-1.678a3.75 3.75 0 00-5.304 0L3.382 8.974a3.75 3.75 0 00-.75 2.69V18a3 3 0 003 3h15a3 3 0 003-3v-6.336c0-.96-.27-1.9-.75-2.69z" />
       </svg>
     ),
-    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16c76?w=400&h=300&fit=crop'
+    image: '/images/hygiene-kit.jpg'
   },
   {
     title: 'Cross Summit',
