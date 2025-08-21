@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import JoinButton from './JoinButton'
 
 const navItems = [
-  { name: 'About', href: '#about' },
   { name: 'Events', href: '#events' },
+  { name: 'About', href: '#about' },
   { name: 'Get Involved', href: '#get-involved' },
   { name: 'FAQ', href: '#faq' },
 ]
@@ -44,7 +44,7 @@ export default function Header() {
                 {item.name}
               </button>
             ))}
-            <JoinButton variant="secondary" size="sm" />
+            <JoinButton size="sm" />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -83,7 +83,7 @@ export default function Header() {
                   </button>
                 ))}
                 <div className="pt-4">
-                  <JoinButton variant="secondary" size="md" className="w-full" />
+                  <JoinButton size="md" className="w-full" />
                 </div>
               </nav>
             </div>

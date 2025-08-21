@@ -144,14 +144,14 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <MotionDiv
-        initial={isDesktop ? { opacity: 0 } : {}}
-        animate={isDesktop ? { opacity: 1 } : {}}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
       >
         <div className="animate-bounce">
           <svg 
-            className="w-6 h-6 text-white opacity-70" 
+            className="w-8 h-8 text-white opacity-70" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"

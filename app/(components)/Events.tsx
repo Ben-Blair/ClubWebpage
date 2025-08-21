@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react'
 const events = [
   {
     title: 'Hygiene Kit Outreach',
-    description: 'Assemble kits and share them with people experiencing homelessness across Boulder.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.618 8.974l-1.902-1.902a3.75 3.75 0 00-5.304 0L12 9.75l-1.412-1.678a3.75 3.75 0 00-5.304 0L3.382 8.974a3.75 3.75 0 00-.75 2.69V18a3 3 0 003 3h15a3 3 0 003-3v-6.336c0-.96-.27-1.9-.75-2.69z" />
@@ -19,7 +18,6 @@ const events = [
   },
   {
     title: 'Cross Summit',
-    description: 'Hike a local peak together and place a cross at the summit as a sign of hope.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 12l2 2 4-4" />
@@ -31,7 +29,6 @@ const events = [
   },
   {
     title: 'Hangouts',
-    description: 'Coffee runs, study sessions, game nights, and spontaneous fun.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -157,7 +154,7 @@ export default function Events() {
                   title={event.title}
                 />
               ) : (
-                <div className="relative h-48 bg-gray-200 overflow-hidden">
+                <div className="relative h-80 bg-gray-200 overflow-hidden">
                   <img
                     src={event.image}
                     alt={event.title}
@@ -167,12 +164,9 @@ export default function Events() {
                 </div>
               )}
               <div className="p-6">
-                <h3 className="text-xl font-bold font-space-grotesk mb-3">
+                <h3 className="text-xl font-bold font-space-grotesk text-center">
                   {event.title}
                 </h3>
-                <p className="text-gray-600 text-balance">
-                  {event.description}
-                </p>
               </div>
             </ConditionalMotion>
           ))}
