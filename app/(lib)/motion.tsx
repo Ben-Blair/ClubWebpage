@@ -60,7 +60,34 @@ export const ConditionalMotion = ({
   [key: string]: any
 }) => {
   if (!isDesktop) {
-    return <div {...props}>{children}</div>
+    // Filter out Framer Motion props for regular div
+    const {
+      variants,
+      initial,
+      animate,
+      exit,
+      transition,
+      whileHover,
+      whileTap,
+      whileInView,
+      whileFocus,
+      whileDrag,
+      drag,
+      dragConstraints,
+      dragElastic,
+      dragMomentum,
+      dragPropagation,
+      dragSnapToOrigin,
+      dragTransition,
+      layout,
+      layoutId,
+      layoutDependency,
+      layoutScroll,
+      layoutRoot,
+      ...divProps
+    } = props
+    
+    return <div {...divProps}>{children}</div>
   }
   
   return <motion.div {...props}>{children}</motion.div>

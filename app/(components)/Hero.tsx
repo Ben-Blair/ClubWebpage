@@ -27,45 +27,22 @@ export default function Hero() {
     setVideoError(true)
   }
 
-  // Check for slow connection and handle video end
+
+
+  // Check for slow connection
   useEffect(() => {
-    // Check if connection is slow (3G or slower)
     const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
     const isSlow = connection && (
       connection.effectiveType === 'slow-2g' || 
       connection.effectiveType === '2g' || 
       connection.effectiveType === '3g' ||
-      connection.downlink < 1.5 // Less than 1.5 Mbps
+      connection.downlink < 1.5
     )
 
     if (isSlow) {
       setIsSlowConnection(true)
     }
-
-    const video = videoRef.current
-    if (!video) return
-
-    const handleVideoEnd = () => {
-      // Pause at the last frame instead of looping
-      video.pause()
-    }
-
-    const handleVideoLoaded = () => {
-      if (isSlowConnection) {
-        // For slow connections, pause at first frame
-        video.pause()
-        video.currentTime = 0
-      }
-    }
-
-    video.addEventListener('ended', handleVideoEnd)
-    video.addEventListener('loadeddata', handleVideoLoaded)
-
-    return () => {
-      video.removeEventListener('ended', handleVideoEnd)
-      video.removeEventListener('loadeddata', handleVideoLoaded)
-    }
-  }, [isSlowConnection])
+  }, [])
 
   // Scroll-based bubble animation
   useEffect(() => {
@@ -124,15 +101,13 @@ export default function Hero() {
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover opacity-70"
         autoPlay={!isSlowConnection}
+        loop
         muted
         playsInline
         onError={handleVideoError}
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
-        {/* Fallback to og-image if video can't play */}
+        <source src="/videos/hero-video.mp4" type="video/mp4" />
       </video>
-
-
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center text-white">

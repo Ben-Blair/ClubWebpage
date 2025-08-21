@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useIsDesktop } from '../(lib)/useIsDesktop'
 import { ConditionalMotion, scrollAnimation, staggerContainer } from '../(lib)/motion'
+import { useEffect, useRef } from 'react'
 
 const values = [
   {
@@ -12,7 +13,8 @@ const values = [
       </svg>
     ),
     title: 'Friendship',
-    description: 'Build genuine relationships with fellow students who share your values.'
+    videoSrc: null,
+    placeholder: true
   },
   {
     icon: (
@@ -21,7 +23,8 @@ const values = [
       </svg>
     ),
     title: 'Faith in Action',
-    description: 'Put your faith into practice through meaningful service and community engagement.'
+    videoSrc: null,
+    placeholder: true
   },
   {
     icon: (
@@ -30,9 +33,80 @@ const values = [
       </svg>
     ),
     title: 'Real Impact',
-    description: 'Make a difference in Boulder through hands-on service projects and outreach.'
+    videoSrc: null,
+    placeholder: true
   }
 ]
+
+// Video Component
+function VideoPlayer({ src, placeholder, title }: { src: string | null, placeholder: boolean, title: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current && !placeholder) {
+      const video = videoRef.current;
+      
+      const playVideo = async () => {
+        try {
+          await video.play();
+          console.log('Video autoplay successful');
+        } catch (error) {
+          console.log('Autoplay failed:', error);
+        }
+      };
+
+      if (video.readyState >= 2) {
+        playVideo();
+      } else {
+        video.addEventListener('loadeddata', playVideo);
+        return () => video.removeEventListener('loadeddata', playVideo);
+      }
+    }
+  }, [placeholder]);
+
+  if (placeholder) {
+    return (
+      <div className="relative w-full h-64 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p className="text-sm text-gray-500 font-medium">{title} Video</p>
+          <p className="text-xs text-gray-400 mt-1">Coming Soon</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="relative w-full h-64 bg-gray-100 rounded-lg overflow-hidden">
+      <video
+        ref={videoRef}
+        className="w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        controls={false}
+        onLoadedMetadata={(e) => {
+          console.log('Video loaded, duration:', e.currentTarget.duration);
+        }}
+        onPlay={(e) => {
+          console.log('Video started playing');
+        }}
+        onEnded={(e) => {
+          console.log('Video ended, should loop');
+        }}
+      >
+        <source src={src!} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  )
+}
 
 export default function About() {
   const isDesktop = useIsDesktop()
@@ -57,7 +131,7 @@ export default function About() {
           </p>
         </ConditionalMotion>
 
-        {/* Value Cards */}
+        {/* Value Cards with Videos */}
         <ConditionalMotion
           isDesktop={isDesktop}
           variants={staggerContainer}
@@ -71,17 +145,19 @@ export default function About() {
               key={value.title}
               isDesktop={isDesktop}
               variants={scrollAnimation}
-              className="card p-8 text-center group"
+              className="card p-6 text-center group"
             >
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 text-accent group-hover:bg-accent/20 transition-colors duration-200">
+              <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3 text-accent group-hover:bg-accent/20 transition-colors duration-200">
                 {value.icon}
               </div>
-              <h3 className="text-xl font-bold font-space-grotesk mb-4">
+              <h3 className="text-lg font-bold font-space-grotesk mb-3">
                 {value.title}
               </h3>
-              <p className="text-gray-600 text-balance">
-                {value.description}
-              </p>
+              <VideoPlayer 
+                src={value.videoSrc} 
+                placeholder={value.placeholder} 
+                title={value.title}
+              />
             </ConditionalMotion>
           ))}
         </ConditionalMotion>

@@ -11,8 +11,8 @@ export default function Home() {
     <main className="bg-white">
       <Header />
       <Hero />
-      <About />
       <Events />
+      <About />
       <GetInvolved />
       <FAQ />
       <Footer />
