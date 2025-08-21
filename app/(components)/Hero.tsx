@@ -16,8 +16,8 @@ export default function Hero() {
   const lastScrollY = useRef(0)
   const lastScrollTime = useRef(Date.now())
 
-  const scrollToAbout = () => {
-    const element = document.querySelector('#about')
+  const scrollToEvents = () => {
+    const element = document.querySelector('#events')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
@@ -133,10 +133,10 @@ export default function Hero() {
               Join GroupMe
             </JoinButton>
             <button
-              onClick={scrollToAbout}
-              className="btn-secondary w-full sm:w-auto"
+              onClick={scrollToEvents}
+              className="bg-white hover:bg-gray-50 text-gray-900 font-semibold py-4 px-8 text-lg rounded-lg border border-gray-300 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 w-full sm:w-auto"
             >
-              What is Jesus Club?
+              What We Do
             </button>
           </div>
         </MotionDiv>

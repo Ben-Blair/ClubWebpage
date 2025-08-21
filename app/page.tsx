@@ -5,6 +5,7 @@ import Events from './(components)/Events'
 import GetInvolved from './(components)/GetInvolved'
 import FAQ from './(components)/FAQ'
 import Footer from './(components)/Footer'
+import FloatingJoinButton from './(components)/FloatingJoinButton'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <GetInvolved />
       <FAQ />
       <Footer />
+      <FloatingJoinButton />
     </main>
   )
 }

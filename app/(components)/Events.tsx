@@ -2,7 +2,6 @@
 
 import { useIsDesktop } from '../(lib)/useIsDesktop'
 import { ConditionalMotion, scrollAnimation, staggerContainer } from '../(lib)/motion'
-import JoinButton from './JoinButton'
 import { useEffect, useRef } from 'react'
 
 const events = [
@@ -171,12 +170,9 @@ export default function Events() {
                 <h3 className="text-xl font-bold font-space-grotesk mb-3">
                   {event.title}
                 </h3>
-                <p className="text-gray-600 mb-6 text-balance">
+                <p className="text-gray-600 text-balance">
                   {event.description}
                 </p>
-                <JoinButton size="sm" className="w-full">
-                  Join GroupMe
-                </JoinButton>
               </div>
             </ConditionalMotion>
           ))}
