@@ -11,6 +11,7 @@ export default function Hero() {
   const [isSlowConnection, setIsSlowConnection] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [scrollSpeed, setScrollSpeed] = useState(0)
+  const [buttonsReady, setButtonsReady] = useState(true) // Buttons are ready immediately
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const lastScrollY = useRef(0)
@@ -27,24 +28,42 @@ export default function Hero() {
     setVideoError(true)
   }
 
-
-
-  // Check for slow connection
+  // Ensure buttons are immediately functional - this runs first
   useEffect(() => {
-    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
-    const isSlow = connection && (
-      connection.effectiveType === 'slow-2g' || 
-      connection.effectiveType === '2g' || 
-      connection.effectiveType === '3g' ||
-      connection.downlink < 1.5
-    )
-
-    if (isSlow) {
-      setIsSlowConnection(true)
-    }
+    // Buttons are ready immediately - no waiting for videos or other content
+    setButtonsReady(true)
+    
+    // Make all buttons immediately clickable
+    const buttons = document.querySelectorAll('button, a')
+    buttons.forEach(button => {
+      if (button instanceof HTMLElement) {
+        button.style.pointerEvents = 'auto'
+        button.style.cursor = 'pointer'
+      }
+    })
   }, [])
 
-  // Scroll-based bubble animation
+  // Check for slow connection (non-blocking)
+  useEffect(() => {
+    const checkConnection = () => {
+      const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection
+      const isSlow = connection && (
+        connection.effectiveType === 'slow-2g' || 
+        connection.effectiveType === '2g' || 
+        connection.effectiveType === '3g' ||
+        connection.downlink < 1.5
+      )
+
+      if (isSlow) {
+        setIsSlowConnection(true)
+      }
+    }
+
+    // Check connection asynchronously - don't block button functionality
+    setTimeout(checkConnection, 100)
+  }, [])
+
+  // Scroll-based bubble animation (non-blocking)
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -96,20 +115,23 @@ export default function Hero() {
         ></div>
       )}
       
-      {/* Hero Video Background */}
+      {/* Hero Video Background - Loads asynchronously */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover opacity-70"
+        className="absolute inset-0 w-full h-full object-cover"
         autoPlay={!isSlowConnection}
         loop
         muted
         playsInline
+        preload="metadata"
         onError={handleVideoError}
+        onLoadStart={() => console.log('Hero video loading started')}
+        onCanPlay={() => console.log('Hero video can play')}
       >
         <source src="/videos/hero-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Content */}
+      {/* Content - Always visible and functional */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center text-white">
         <MotionDiv
           initial={isDesktop ? { opacity: 0, y: 30 } : {}}
@@ -127,7 +149,7 @@ export default function Hero() {
             Student Run. No Dues. Join our Club!
           </p>
           
-          {/* CTAs */}
+          {/* CTAs - Always functional */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <JoinButton size="lg" className="w-full sm:w-auto">
               Join GroupMe
@@ -135,6 +157,7 @@ export default function Hero() {
             <button
               onClick={scrollToEvents}
               className="bg-white hover:bg-gray-50 text-gray-900 font-semibold py-4 px-8 text-lg rounded-lg border border-gray-300 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 w-full sm:w-auto"
+              style={{ pointerEvents: 'auto' }}
             >
               What We Do
             </button>

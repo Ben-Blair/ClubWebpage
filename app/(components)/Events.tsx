@@ -91,16 +91,16 @@ function VideoPlayer({ src, placeholder, title }: { src: string | null, placehol
         loop
         muted
         playsInline
-        preload="auto"
+        preload="none"
         controls={false}
         onLoadedMetadata={(e) => {
-          console.log('Video loaded, duration:', e.currentTarget.duration);
+          console.log('Event video loaded, duration:', e.currentTarget.duration);
         }}
         onPlay={(e) => {
-          console.log('Video started playing');
+          console.log('Event video started playing');
         }}
         onEnded={(e) => {
-          console.log('Video ended, should loop');
+          console.log('Event video ended, should loop');
         }}
       >
         <source src={src!} type="video/mp4" />

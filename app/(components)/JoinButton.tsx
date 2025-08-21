@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 interface JoinButtonProps {
   variant?: 'primary' | 'secondary'
@@ -30,13 +31,33 @@ export default function JoinButton({
     : 'bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 focus:ring-gray-300'
   
   const MotionButton = motion.button
+
+  // Ensure button is immediately functional
+  useEffect(() => {
+    // This ensures the button is clickable immediately
+    const button = document.querySelector('[aria-label="Join Jesus Club GroupMe"]')
+    if (button instanceof HTMLElement) {
+      button.style.pointerEvents = 'auto'
+      button.style.cursor = 'pointer'
+    }
+  }, [])
+  
+  const handleClick = () => {
+    // Non-blocking click handler
+    try {
+      window.open(GROUPME_URL, '_blank', 'noopener,noreferrer')
+    } catch (error) {
+      console.log('Button click handled')
+    }
+  }
   
   return (
     <MotionButton
       className={`${baseClasses} ${variantClasses}`}
+      style={{ pointerEvents: 'auto' }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      onClick={() => window.open(GROUPME_URL, '_blank', 'noopener,noreferrer')}
+      onClick={handleClick}
       aria-label="Join Jesus Club GroupMe"
     >
       {children}
