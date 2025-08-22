@@ -22,15 +22,22 @@ export default function Header() {
     setIsMobileMenuOpen(false)
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold font-space-grotesk">
+            <button
+              onClick={scrollToTop}
+              className="text-xl font-bold font-space-grotesk cursor-pointer"
+            >
               JesusClub.org
-            </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
