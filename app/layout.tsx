@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Jesus Club - CU Boulder | Student Run. No Dues. Join our Club!',
+  title: 'Jesus Club - CU Boulder | Student Run. No Dues. Very Chill & Ultra Vibeyy',
   description: 'Jesus Club is a student-led community at CU Boulder where friendships grow through faith and service. Join us for weekly hangouts and monthly service events.',
   keywords: 'Jesus Club, CU Boulder, Christian, student organization, community service, faith, friendship',
   authors: [{ name: 'Jesus Club CU Boulder' }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Jesus Club - CU Boulder',
-    description: 'Student Run. No Dues. Join our Club!',
+    description: 'Student Run. No Dues. Very Chill & Ultra Vibeyy',
     url: 'https://jesusclub.org',
     siteName: 'Jesus Club CU Boulder',
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Jesus Club - CU Boulder',
-    description: 'Student Run. No Dues. Join our Club!',
+    description: 'Student Run. No Dues. Very Chill & Ultra Vibeyy',
     images: ['/og-image.png'],
   },
   robots: {

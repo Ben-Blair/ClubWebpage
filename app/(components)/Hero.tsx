@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useIsDesktop } from '../(lib)/useIsDesktop'
 import JoinButton from './JoinButton'
+import RainbowWaveText from './RainbowWaveText'
 import { useState, useRef, useEffect } from 'react'
 
 export default function Hero() {
@@ -139,15 +140,23 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="max-w-4xl mx-auto"
         >
-          {/* Main Title */}
-          <h1 className="text-hero font-bold font-space-grotesk mb-6 text-balance">
-            Jesus Club
-          </h1>
+          {/* Main Title with Subtitle */}
+          <div className="flex items-center justify-center mb-6">
+            <h1 className="text-hero font-bold font-space-grotesk text-balance">
+              Jesus Club
+            </h1>
+            <span className="text-lg sm:text-xl ml-4 opacity-90">
+              (student run. no dues.)
+            </span>
+          </div>
           
           {/* Subheadline */}
-          <p className="text-body text-xl sm:text-2xl mb-8 text-balance opacity-95">
-            Student Run. No Dues. Join our Club!
-          </p>
+          <div className="mb-8">
+            <RainbowWaveText 
+              text="Very Chill & Ultra Vibeyy"
+              className="text-body text-xl sm:text-2xl text-balance"
+            />
+          </div>
           
           {/* CTAs - Always functional */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
