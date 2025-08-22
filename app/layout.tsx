@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: 'Jesus Club - CU Boulder | Student Run. No Dues. Very Chill & Ultra Vibeyy',
-  description: 'Jesus Club is a student-led community at CU Boulder where friendships grow through faith and service. Join us for weekly hangouts and monthly service events.',
+  description: 'Just a club where you can meet new people, do cool stuff, and do some good. STUDENT RUN — FREE TO JOIN',
   keywords: 'Jesus Club, CU Boulder, Christian, student organization, community service, faith, friendship',
   authors: [{ name: 'Jesus Club CU Boulder' }],
   creator: 'Jesus Club CU Boulder',

@@ -126,8 +126,9 @@ export default function About() {
             About Jesus Club
           </h2>
           <p className="text-body text-gray-700 max-w-3xl mx-auto text-balance">
-            Jesus Club is a student-led community at CU Boulder where friendships grow through faith and service. 
-            We keep it simple: show up, serve together, and hang out.
+            Just a club where you can meet new people, do cool stuff, and do some good.
+            <br />
+            <span className="font-semibold">STUDENT RUN — FREE TO JOIN</span>
           </p>
         </ConditionalMotion>
 
