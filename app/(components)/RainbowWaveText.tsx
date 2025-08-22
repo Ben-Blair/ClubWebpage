@@ -28,10 +28,12 @@ export default function RainbowWaveText({ text, className = '' }: RainbowWaveTex
             className="inline-block"
             initial={{
               y: 0,
+              opacity: 0,
               color: initialColor,
             }}
             animate={{
               y: [0, -15, 0, 15, 0],
+              opacity: 1,
               color: rainbowColors,
             }}
             transition={{
@@ -39,6 +41,11 @@ export default function RainbowWaveText({ text, className = '' }: RainbowWaveTex
                 duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
+                delay: index * 0.1,
+              },
+              opacity: {
+                duration: 0.5,
+                ease: "easeOut",
                 delay: index * 0.1,
               },
               color: {
@@ -51,8 +58,9 @@ export default function RainbowWaveText({ text, className = '' }: RainbowWaveTex
             style={{
               display: 'inline-block',
               fontWeight: 'bold',
-              textShadow: '0 0 10px rgba(255,255,255,0.3)',
+              textShadow: '0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.2), 0 0 50px rgba(255,255,255,0.1)',
               whiteSpace: 'nowrap',
+              filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.4))',
             }}
           >
             {char === ' ' ? '\u00A0' : char}

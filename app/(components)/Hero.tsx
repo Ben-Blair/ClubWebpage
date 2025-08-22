@@ -140,21 +140,16 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="max-w-4xl mx-auto"
         >
-          {/* Main Title with Subtitle */}
-          <div className="flex items-center justify-center mb-6">
-            <h1 className="text-hero font-bold font-space-grotesk text-balance">
-              Jesus Club
-            </h1>
-            <span className="text-lg sm:text-xl ml-4 opacity-90">
-              (student run. no dues.)
-            </span>
-          </div>
+          {/* Main Title */}
+          <h1 className="text-7xl sm:text-8xl font-black font-space-grotesk mb-6 text-balance">
+            Jesus Club
+          </h1>
           
           {/* Subheadline */}
-          <div className="mb-8">
+          <div className="mb-32">
             <RainbowWaveText 
               text="Very Chill & Ultra Vibeyy"
-              className="text-body text-xl sm:text-2xl text-balance"
+              className="text-body text-2xl sm:text-3xl text-balance"
             />
           </div>
           
