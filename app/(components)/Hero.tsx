@@ -21,7 +21,14 @@ export default function Hero() {
   const scrollToEvents = () => {
     const element = document.querySelector('#events')
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const headerHeight = 64 // Height of the sticky header
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerHeight - 5 // Reduced to 5px padding
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
     }
   }
 
@@ -33,15 +40,6 @@ export default function Hero() {
   useEffect(() => {
     // Buttons are ready immediately - no waiting for videos or other content
     setButtonsReady(true)
-    
-    // Make all buttons immediately clickable
-    const buttons = document.querySelectorAll('button, a')
-    buttons.forEach(button => {
-      if (button instanceof HTMLElement) {
-        button.style.pointerEvents = 'auto'
-        button.style.cursor = 'pointer'
-      }
-    })
   }, [])
 
   // Check for slow connection (non-blocking)
@@ -161,7 +159,6 @@ export default function Hero() {
             <button
               onClick={scrollToEvents}
               className="bg-white hover:bg-gray-50 text-gray-900 font-semibold py-4 px-8 text-lg rounded-lg border border-gray-300 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 w-full sm:w-auto"
-              style={{ pointerEvents: 'auto' }}
             >
               What We Do
             </button>
@@ -176,9 +173,13 @@ export default function Hero() {
         transition={{ delay: 0.5, duration: 0.5 }}
         className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
       >
-        <div className="animate-bounce">
+        <button
+          onClick={scrollToEvents}
+          className="animate-bounce cursor-pointer hover:scale-110 transition-transform duration-200"
+          aria-label="Scroll to events section"
+        >
           <svg 
-            className="w-8 h-8 text-white opacity-70" 
+            className="w-8 h-8 text-white opacity-70 drop-shadow-[0_0_2px_rgba(0,0,0,1)]" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -190,7 +191,7 @@ export default function Hero() {
               d="M19 14l-7 7m0 0l-7-7m7 7V3" 
             />
           </svg>
-        </div>
+        </button>
       </MotionDiv>
     </section>
   )
