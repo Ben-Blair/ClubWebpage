@@ -7,7 +7,6 @@ import JoinButton from './JoinButton'
 const navItems = [
   { name: 'Events', href: '#events' },
   { name: 'About', href: '#about' },
-  { name: 'Get Involved', href: '#get-involved' },
   { name: 'FAQ', href: '#faq' },
 ]
 
@@ -15,11 +14,23 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    // Close mobile menu first
     setIsMobileMenuOpen(false)
+    
+    // Scroll with extra padding at top
+    setTimeout(() => {
+      const element = document.querySelector(href)
+      if (element) {
+        const headerHeight = 64 // Height of the sticky header
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+        const offsetPosition = elementPosition - headerHeight - 30 // Add 30px extra padding
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }, 200) // Longer delay to ensure menu closes
   }
 
   const scrollToTop = () => {

@@ -7,27 +7,15 @@ import { ConditionalMotion, scrollAnimation } from '../(lib)/motion'
 const faqs = [
   {
     question: 'Do I have to be religious to join?',
-    answer: 'No—everyone is welcome. We\'re a diverse group of students with different backgrounds and beliefs.'
+    answer: 'Nah just bring good vibes'
   },
   {
-    question: 'Are there dues?',
-    answer: 'No. We\'re donation-supported and completely free to join. All events and activities are free.'
+    question: 'Are there any dues?',
+    answer: 'Nope but if an event requires money we will ask for donations'
   },
   {
-    question: 'How often do you meet?',
-    answer: 'We have weekly hangouts and monthly service events. Check our GroupMe for the latest schedule.'
-  },
-  {
-    question: 'Where do events happen?',
-    answer: 'On campus and around Boulder. We meet at various locations including coffee shops, parks, and campus buildings.'
-  },
-  {
-    question: 'How do I join?',
-    answer: 'Tap the GroupMe button anywhere on this page! That\'s it—no application or interview required.'
-  },
-  {
-    question: 'What if I\'m not sure about my faith?',
-    answer: 'That\'s totally fine! We\'re here to support each other in our spiritual journeys, wherever you are in that process.'
+    question: 'What other things do you do?',
+    answer: 'Put your ideas in the GroupMe and we\'ll make sure to do them'
   }
 ]
 
@@ -99,7 +87,7 @@ export default function FAQ() {
                     openIndex === index ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="px-6 pb-6">
+                  <div className="px-6 py-3">
                     <p className="text-gray-600 text-balance">
                       {faq.answer}
                     </p>
