@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useIsDesktop } from '../(lib)/useIsDesktop'
+import { useLoading } from '../(lib)/LoadingContext'
 import JoinButton from './JoinButton'
 import RainbowWaveText from './RainbowWaveText'
 import { useState, useRef, useEffect } from 'react'
 
 export default function Hero() {
   const isDesktop = useIsDesktop()
+  const { setHeroReady } = useLoading()
   const [videoError, setVideoError] = useState(false)
   const [isSlowConnection, setIsSlowConnection] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -41,6 +43,15 @@ export default function Hero() {
     // Buttons are ready immediately - no waiting for videos or other content
     setButtonsReady(true)
   }, [])
+
+  // Signal that hero is ready when rainbow text animation completes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHeroReady(true)
+    }, 2000) // Allow time for rainbow text animation to complete and settle
+
+    return () => clearTimeout(timer)
+  }, [setHeroReady])
 
   // Check for slow connection (non-blocking)
   useEffect(() => {

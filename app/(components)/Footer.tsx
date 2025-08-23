@@ -28,8 +28,6 @@ export default function Footer() {
             Student-led community at CU Boulder where friendships grow through faith and service.
           </p>
           
-
-          
           {/* Bible Verse */}
           <div className="border-t border-gray-200 pt-8">
             <div className="text-center">

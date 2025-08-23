@@ -1,6 +1,7 @@
 'use client'
 
 import { useIsDesktop } from '../(lib)/useIsDesktop'
+import { useLoading } from '../(lib)/LoadingContext'
 import { ConditionalMotion, scrollAnimation, staggerContainer } from '../(lib)/motion'
 import { useEffect, useRef } from 'react'
 
@@ -40,20 +41,24 @@ const events = [
   }
 ]
 
-// Video Component
-function VideoPlayer({ src, placeholder, title }: { src: string | null, placeholder: boolean, title: string }) {
+// Video Component with optimized loading
+function VideoPlayer({ src, placeholder, title, shouldLoad }: { 
+  src: string | null, 
+  placeholder: boolean, 
+  title: string, 
+  shouldLoad: boolean 
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current && !placeholder) {
+    if (videoRef.current && !placeholder && shouldLoad) {
       const video = videoRef.current;
       
       const playVideo = async () => {
         try {
           await video.play();
-          console.log('Video autoplay successful');
         } catch (error) {
-          console.log('Autoplay failed:', error);
+          // Silent fail for autoplay restrictions
         }
       };
 
@@ -64,11 +69,11 @@ function VideoPlayer({ src, placeholder, title }: { src: string | null, placehol
         return () => video.removeEventListener('loadeddata', playVideo);
       }
     }
-  }, [placeholder]);
+  }, [placeholder, shouldLoad]);
 
   if (placeholder) {
     return (
-      <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-80 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3">
             <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,34 +89,44 @@ function VideoPlayer({ src, placeholder, title }: { src: string | null, placehol
 
   return (
     <div className="relative w-full h-80 bg-gray-100 rounded-lg overflow-hidden">
-      <video
-        ref={videoRef}
-        className="w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="none"
-        controls={false}
-        onLoadedMetadata={(e) => {
-          console.log('Event video loaded, duration:', e.currentTarget.duration);
-        }}
-        onPlay={(e) => {
-          console.log('Event video started playing');
-        }}
-        onEnded={(e) => {
-          console.log('Event video ended, should loop');
-        }}
-      >
-        <source src={src!} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {shouldLoad ? (
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          controls={false}
+        >
+          <source src={src!} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
+          <div className="text-gray-400 text-sm">Loading video...</div>
+        </div>
+      )}
     </div>
   )
 }
 
 export default function Events() {
   const isDesktop = useIsDesktop()
+  const { heroReady, setEventsReady } = useLoading()
+
+  // Signal that events section is ready when videos start loading
+  useEffect(() => {
+    if (heroReady) {
+      // Small delay to ensure smooth transition
+      const timer = setTimeout(() => {
+        setEventsReady(true)
+      }, 300)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [heroReady, setEventsReady])
 
   return (
     <section id="events" className="py-20 bg-gray-50">
@@ -152,6 +167,7 @@ export default function Events() {
                   src={event.videoSrc} 
                   placeholder={event.placeholder} 
                   title={event.title}
+                  shouldLoad={heroReady}
                 />
               ) : (
                 <div className="relative h-80 bg-gray-200 overflow-hidden">

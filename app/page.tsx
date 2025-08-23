@@ -1,7 +1,9 @@
 import { Suspense, lazy } from 'react'
+import { LoadingProvider } from './(lib)/LoadingContext'
 import Header from './(components)/Header'
 import Hero from './(components)/Hero'
 import FloatingJoinButton from './(components)/FloatingJoinButton'
+import LoadingIndicator from './(components)/LoadingIndicator'
 
 // Lazy load non-critical components
 const Events = lazy(() => import('./(components)/Events'))
@@ -24,36 +26,39 @@ const ContentLoader = () => (
 
 export default function Home() {
   return (
-    <main className="bg-white">
-      {/* Priority 1: Navigation and Core Functionality - Loads Immediately */}
-      <Header />
-      
-      {/* Priority 2: Hero with Buttons - Loads Immediately */}
-      <Hero />
-      
-      {/* Priority 3: Floating Button for Mobile - Loads Immediately */}
-      <FloatingJoinButton />
-      
-      {/* Priority 4: Content Sections - Loaded Progressively */}
-      <Suspense fallback={<ContentLoader />}>
-        <Events />
-      </Suspense>
-      
-      <Suspense fallback={<ContentLoader />}>
-        <About />
-      </Suspense>
-      
-      <Suspense fallback={<ContentLoader />}>
-        <GetInvolved />
-      </Suspense>
-      
-      <Suspense fallback={<ContentLoader />}>
-        <FAQ />
-      </Suspense>
-      
-      <Suspense fallback={<ContentLoader />}>
-        <Footer />
-      </Suspense>
-    </main>
+    <LoadingProvider>
+      <LoadingIndicator />
+      <main className="bg-white">
+        {/* Priority 1: Navigation and Core Functionality - Loads Immediately */}
+        <Header />
+        
+        {/* Priority 2: Hero with Buttons - Loads Immediately */}
+        <Hero />
+        
+        {/* Priority 3: Floating Button for Mobile - Loads Immediately */}
+        <FloatingJoinButton />
+        
+        {/* Priority 4: Content Sections - Loaded Progressively */}
+        <Suspense fallback={<ContentLoader />}>
+          <Events />
+        </Suspense>
+        
+        <Suspense fallback={<ContentLoader />}>
+          <About />
+        </Suspense>
+        
+        <Suspense fallback={<ContentLoader />}>
+          <GetInvolved />
+        </Suspense>
+        
+        <Suspense fallback={<ContentLoader />}>
+          <FAQ />
+        </Suspense>
+        
+        <Suspense fallback={<ContentLoader />}>
+          <Footer />
+        </Suspense>
+      </main>
+    </LoadingProvider>
   )
 }
