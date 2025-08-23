@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-white border-t border-gray-200 pb-20 sm:pb-0">
       <div className="container mx-auto px-4 sm:px-6 py-12">
         <ConditionalMotion
           isDesktop={isDesktop}

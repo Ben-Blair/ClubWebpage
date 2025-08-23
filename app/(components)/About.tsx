@@ -28,7 +28,7 @@ export default function About() {
           <p className="text-body text-gray-700 max-w-3xl mx-auto text-balance">
             Just a club where you can meet new people, do cool stuff, and do some good.
             <br />
-            <span className="font-semibold">STUDENT RUN — FREE TO JOIN</span>
+            <span className="font-semibold mt-4 block">STUDENT RUN — FREE TO JOIN</span>
           </p>
         </ConditionalMotion>
 

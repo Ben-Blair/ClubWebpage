@@ -128,7 +128,7 @@ export default function Events() {
             Our Events
           </h2>
           <p className="text-body text-gray-700 max-w-3xl mx-auto text-balance">
-            Join us for weekly hangouts and monthly service events that make a real difference in our community.
+            Join us for weekend trips, casual hangouts, helping the needy, and spreading da luv.<img src="/images/heartGif.gif" alt="heart" className="inline-block w-10 h-10 align-bottom" />
           </p>
         </ConditionalMotion>
 
