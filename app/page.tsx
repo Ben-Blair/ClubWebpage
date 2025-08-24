@@ -8,6 +8,7 @@ import LoadingIndicator from './(components)/LoadingIndicator'
 // Lazy load non-critical components
 const Events = lazy(() => import('./(components)/Events'))
 const About = lazy(() => import('./(components)/About'))
+const WhatWeDo = lazy(() => import('./(components)/WhatWeDo'))
 const GetInvolved = lazy(() => import('./(components)/GetInvolved'))
 const FAQ = lazy(() => import('./(components)/FAQ'))
 const Footer = lazy(() => import('./(components)/Footer'))
@@ -45,6 +46,10 @@ export default function Home() {
         
         <Suspense fallback={<ContentLoader />}>
           <About />
+        </Suspense>
+        
+        <Suspense fallback={<ContentLoader />}>
+          <WhatWeDo />
         </Suspense>
         
         <Suspense fallback={<ContentLoader />}>

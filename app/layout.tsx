@@ -101,7 +101,7 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning={true}>
         {children}
       </body>
     </html>
