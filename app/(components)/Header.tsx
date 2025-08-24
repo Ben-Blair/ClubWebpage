@@ -47,7 +47,7 @@ export default function Header() {
               onClick={scrollToTop}
               className="text-xl font-bold font-space-grotesk cursor-pointer"
             >
-              JesusClub.org
+              JesusClubCU.com
             </button>
           </div>
 

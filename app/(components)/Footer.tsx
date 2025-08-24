@@ -8,8 +8,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white border-t border-gray-200 pb-20 sm:pb-0">
-      <div className="container mx-auto px-4 sm:px-6 py-12">
+    <footer className="bg-white border-t border-gray-200 pb-12 sm:pb-6">
+      <div className="container mx-auto px-4 sm:px-6 py-10">
         <ConditionalMotion
           isDesktop={isDesktop}
           variants={scrollAnimation}
@@ -18,16 +18,6 @@ export default function Footer() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center"
         >
-          {/* Logo */}
-          <h3 className="text-2xl font-bold font-space-grotesk mb-4">
-            Jesus Club
-          </h3>
-          
-          {/* Description */}
-          <p className="text-gray-600 mb-8 max-w-md mx-auto text-balance">
-            Student-led community at CU Boulder where friendships grow through faith and service.
-          </p>
-          
           {/* Bible Verse */}
           <div className="border-t border-gray-200 pt-8">
             <div className="text-center">

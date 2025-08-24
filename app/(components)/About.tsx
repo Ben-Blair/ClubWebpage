@@ -12,7 +12,7 @@ export default function About() {
   const isDesktop = useIsDesktop()
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-12 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <ConditionalMotion
           isDesktop={isDesktop}
@@ -20,7 +20,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-8"
         >
           <h2 className="text-h2 font-bold font-space-grotesk mb-6 text-balance">
             About Jesus Club

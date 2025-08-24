@@ -6,19 +6,12 @@ import { ConditionalMotion, scrollAnimation, staggerContainer } from '../(lib)/m
 
 const activities = [
   {
-    title: 'Community Service',
-    description: 'Helping those in need through various volunteer opportunities',
-    image: '/images/helping.jpg'
-  },
-  {
-    title: 'Weekend Adventures',
-    description: 'Exciting trips and outdoor activities with friends',
-    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=300&fit=crop'
-  },
-  {
-    title: 'Casual Hangouts',
-    description: 'Relaxed get-togethers and social events',
+    title: 'Homeless Kits',
     image: '/images/hygiene-kit.jpg'
+  },
+  {
+    title: 'Fundraising',
+    image: '/images/fundraising.png'
   }
 ]
 
@@ -48,7 +41,7 @@ export default function WhatWeDo() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >
           {activities.map((activity) => (
             <ConditionalMotion
@@ -63,15 +56,11 @@ export default function WhatWeDo() {
                   alt={activity.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold font-space-grotesk mb-3 text-center">
+                <h3 className="text-xl font-bold font-space-grotesk text-center">
                   {activity.title}
                 </h3>
-                <p className="text-gray-600 text-center text-sm leading-relaxed">
-                  {activity.description}
-                </p>
               </div>
             </ConditionalMotion>
           ))}
