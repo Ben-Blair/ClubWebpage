@@ -157,7 +157,7 @@ export default function Hero() {
           {/* Subheadline */}
           <div className="mb-32">
             <RainbowWaveText 
-              text="Very Chill & Ultra Vibeyy"
+              text="Very Cool — Ultra Vibeyy"
               className="text-body text-[1.75rem] sm:text-[1.8rem] text-balance"
             />
           </div>
