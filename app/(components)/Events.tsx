@@ -98,6 +98,7 @@ function VideoPlayer({ src, placeholder, title, shouldLoad }: {
           muted
           playsInline
           preload="metadata"
+          poster="/images/unloaded.jpeg"
           controls={false}
         >
           <source src={src!} type="video/mp4" />

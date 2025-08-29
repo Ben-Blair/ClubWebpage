@@ -121,7 +121,7 @@ export default function Hero() {
       {videoError && (
         <div 
           className="absolute inset-0 w-full h-full object-cover opacity-70 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/og-image.png)' }}
+          style={{ backgroundImage: 'url(/images/unloaded.jpeg)' }}
         ></div>
       )}
       
@@ -134,6 +134,7 @@ export default function Hero() {
         muted
         playsInline
         preload="metadata"
+        poster="/images/unloaded.jpeg"
         onError={handleVideoError}
         onLoadStart={() => console.log('Hero video loading started')}
         onCanPlay={() => console.log('Hero video can play')}
